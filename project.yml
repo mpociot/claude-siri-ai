@@ -1,0 +1,43 @@
+name: GoldenGateClaude
+options:
+  deploymentTarget:
+    macOS: '27.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    CODE_SIGN_IDENTITY: '-'
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ''
+    CURRENT_PROJECT_VERSION: '3'
+    MARKETING_VERSION: '0.2.0'
+targets:
+  GoldenGateClaude:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/Host
+      - Sources/BridgeCore
+      - path: .local/AppResources
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.goldengate.Claude
+        PRODUCT_NAME: Claude
+        CODE_SIGN_ENTITLEMENTS: Sources/Host/Host.entitlements
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Claude
+        INFOPLIST_KEY_CFBundleName: Claude
+        INFOPLIST_KEY_LSUIElement: YES
+    dependencies:
+      - target: ClaudeProvider
+        embed: true
+  ClaudeProvider:
+    type: extensionkit-extension
+    platform: macOS
+    sources: [Sources/Extension]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.goldengate.Claude.Provider
+        CODE_SIGN_ENTITLEMENTS: Sources/Extension/Provider.entitlements
+        INFOPLIST_FILE: Sources/Extension/Info.plist
+        SKIP_INSTALL: YES

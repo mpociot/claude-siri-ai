@@ -1,0 +1,6 @@
+.DS_Store
+.build/
+.local/
+*.xcodeproj/
+__pycache__/
+Sources/Extension/bridge.json
