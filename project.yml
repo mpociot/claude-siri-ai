@@ -28,6 +28,12 @@ targets:
         INFOPLIST_KEY_CFBundleDisplayName: Claude
         INFOPLIST_KEY_CFBundleName: Claude
         INFOPLIST_KEY_LSUIElement: YES
+    info:
+      path: .local/Claude-Info.plist
+      properties:
+        CFBundleIcons:
+          CFBundlePrimaryIcon:
+            CFBundleSymbolName: claude.logo
     dependencies:
       - target: ClaudeProvider
         embed: true
